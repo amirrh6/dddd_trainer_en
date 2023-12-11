@@ -3,4 +3,5 @@ loguru
 pyyaml
 tqdm
 numpy
+onnx
 pillow=9.5.0
