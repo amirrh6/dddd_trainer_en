@@ -1,6 +1,10 @@
-# dddd_trainer 带带弟弟OCR训练工具
+- [ ] README.md is Translated to English via Google Translate (In progress)
+- [ ] 2 Test Datasets are uploaded to Google Drive instead of Lanzoum
+- [x] Added `onnx` to requirements.txt file
 
-### 带带弟弟OCR所用的训练工具今天正式开源啦！ [ddddocr](https://github.com/sml2h3/ddddocr)
+# dddd_trainer OCR training tool for your younger brother
+
+### The training tool used by my brother’s OCR is officially open source today! [ddddocr](https://github.com/sml2h3/ddddocr)
 
 ### 项目仅支持N卡训练，A卡或其他卡就先别看啦
 
