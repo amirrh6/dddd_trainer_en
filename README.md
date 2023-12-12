@@ -30,7 +30,7 @@ Choose according to your graphics card model and system
 
 [cudnn](https://developer.nvidia.com/zh-cn/cudnn)
 
-Note that the cuda version number supported by cudnn should correspond to the cuda version number you installed. Different versions of cuda support different graphics cards. <b> For the 20 series brainless version, choose version 10.2 cuda, and for the 30 series brainless version, choose version 11.3 cuda</b > . If there is any problem here, please Baidu, it is a basic question.
+Note that the cuda version number supported by cudnn should correspond to the cuda version number you installed. Different versions of cuda support different graphics cards. <b> For the 20 series brainless version, choose version 10.2 cuda, and for the 30 series brainless version, choose version 11.3 cuda</b > . If there is any problem here, please Baidu, it's a basic question.
 
 ## 2. Training part
 
@@ -50,7 +50,7 @@ Note that the cuda version number supported by cudnn should correspond to the cu
 
 `pip install -r requirements.txt`
 
-- ### 3. Create new training program
+- ### 3. Create a new training program
 
 `python app.py create {project_name}`
 
