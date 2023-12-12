@@ -1,111 +1,115 @@
-- [ ] README.md is Translated to English via Google Translate (In progress)
-- [ ] 2 Test Datasets are uploaded to Google Drive instead of Lanzoum
-- [x] Added `onnx` to requirements.txt file
+- [x] README.md is translated to English via Google Translate and it ain't smooth so any sort of help from Chinese speakers is apreciated.
+- - [x] Removed `-i https://pypi.douban.com/simple` from `pip install -r requirements.txt` command. 
+- [x] 2 Test Datasets are uploaded to Google Drive instead of Lanzoum.
+- [x] Added `onnx` to requirements.txt file.
 
-# dddd_trainer OCR training tool for your younger brother
 
-### The training tool used by my brother’s OCR is officially open source today! [ddddocr](https://github.com/sml2h3/ddddocr)
+# dddd_trainer OCR training tool for my younger brother
 
-### 项目仅支持N卡训练，A卡或其他卡就先别看啦
+### The training tool used by my brother OCR is officially open source today! [ddddocr](https://github.com/sml2h3/ddddocr)
 
-### 项目基于Pytorch进行开发，支持cnn与crnn进行训练、断点恢复、自动导出onnx模型，并同时支持无缝使用[ddddocr](https://github.com/sml2h3/ddddocr) 与 [ocr_api_server](https://gitee.com/fkgeek/ocr_api_server) 的无缝部署
+### The project only supports N card training. Don’t look at A card or other cards yet.
 
-### 训练环境支持
+### The project is developed based on Pytorch and supports cnn and crnn training, breakpoint recovery, automatic export of onnx models, and also supports seamless deployment using [ddddocr](https://github.com/sml2h3/ddddocr) and [ocr_api_server](https://gitee.com/fkgeek/ocr_api_server) .
+
+### Training environment support
 
 Windows/Linux
 
-Macos仅支持cpu训练
+Macos only supports CPU training
 
-## 1、深度学习必备环境配置（非仅本项目要求，而是所有深度学习项目要求，cpu训练除外）
+## 1. Necessary environment configuration for deep learning (not only required by this project, but required by all deep learning projects, except CPU training)
 
-### 开始本教程前请先前往[pytorch](https://pytorch.org/get-started/locally/) 官网查看自己系统与硬件支持的pytorch版本，注意30系列之前的N卡，如2080Ti等请选择cuda11以下的版本（例：CUDA 10.2），如果为30系N卡，仅支持CUDA 11版本，请选择CUDA 11以上版本（例：CUDA 11.3），然后根据选择的条件显示的pytorch安装命令完成pytorch安装，由于pytorch的版本更新速度导致很多pypi源仅缓存了cpu版本，CUDA版本需要自己在官网安装。
+### Before starting this tutorial, please go to the [pytorch](https://pytorch.org/get-started/locally/) official website to check the pytorch version supported by your system and hardware. Note that for N cards before the 30 series, such as 2080Ti, please choose the version below cuda11 (for example: CUDA 10.2). If it is a 30 series N card, Only CUDA 11 version is supported. Please select CUDA 11 or above version (for example: CUDA 11.3), and then complete the pytorch installation according to the pytorch installation command displayed according to the selected conditions. Due to the version update speed of pytorch, many pypi sources only cache the cpu version, CUDA The version needs to be installed on the official website.
 
-### 安装CUDA和CUDNN
+### Install CUDA and CUDNN
 
-根据自己显卡型号与系统选择
+Choose according to your graphics card model and system
 
 [cuda](https://developer.nvidia.com/cuda-downloads)
 
 [cudnn](https://developer.nvidia.com/zh-cn/cudnn)
 
-注意cudnn支持的cuda版本号要与你安装的cuda版本号对应，不同版本的cuda支持的显卡不一样，<b>20系无脑选择10.2版本cuda，30系无脑选择11.3版本cuda</b>,这里有啥问题就百度吧，算是一个基础问题。
+Note that the cuda version number supported by cudnn should correspond to the cuda version number you installed. Different versions of cuda support different graphics cards. <b> For the 20 series brainless version, choose version 10.2 cuda, and for the 30 series brainless version, choose version 11.3 cuda</b >, If there is any problem here, just Baidu. It is considered a basic question.
 
-## 2、训练部分 
+## 2. Training part
 
-- 以下所有变量均以 {param} 格式代替，表示可根据自己需要修改，而使用时并不需要带上{}，如步骤创建新的训练项目，使用时可以直接写
+- All the following variables are replaced by {param} format, which means that they can be modified according to your own needs, and you do not need to bring {} when using it. For example, if you create a new training project in the step, you can write it directly when using it.
 
 `python app.py create test_project`
 
-- ### 1、Clone本项目到本地
+- ### 1. Clone this project locally
 
 `git clone https://github.com/sml2h3/dddd_trainer.git`
 
-- ### 2、进入项目目录并安装本项目所需依赖
+- ### 2. Enter the project directory and install the dependencies required for this project
 
-`pip install -r requirements.txt -i https://pypi.douban.com/simple`
+~~`pip install -r requirements.txt -i https://pypi.douban.com/simple`~~
 
-- ### 3、创建新的训练项目
+`pip install -r requirements.txt`
+
+- ### 3. Create new training program
 
 `python app.py create {project_name}`
 
-如果想要创建一个CNN的项目，则可以加上--single参数，CNN项目识别比如图片类是什么分类的情况，比如图片上只有一个字，识别这张图是什么字（图上有多个字的不要用CNN模式），又比如分辨图片里是狮子还是兔子用CNN模式比较合适，大多数OCR需求请不要使用--single
+If you want to create a CNN project, you can add the --single parameter. The CNN project identifies, for example, what category the picture is. For example, if there is only one word on the picture, identify what word the picture is (there are multiple pictures on the picture). Do not use CNN mode for text), and for example, it is more appropriate to use CNN mode to distinguish whether a lion or a rabbit is in a picture. Please do not use --single for most OCR needs.
 
 `python app.py create {project_name} --single`
 
-project_name 为项目名称，尽量不要以特殊符号命名
+project_name is the project name, try not to name it with special symbols.
 
-- ### 4、准备数据
+- ### 4. Prepare data
 
-    项目支持两种形式的数据
+    Project supports two forms of data
     
-    ### A、从文件名导入
+    ### A. Import from file name
         
-    图片均在同一个文件夹中，且命名为类似，其中/root/images_set为图片所在目录，可以为任意目录地址
+    The pictures are all in the same folder and named similarly. /root/images_set is the directory where the pictures are located, which can be any directory address.
 
     ```
   /root/images_set/
-    |---- abcde_随机hash值.jpg
-    |---- sdae_随机hash值.jpg
-    |---- 酱闷肘子_随机hash值.jpg
+    |---- abcde_randomHashValue.jpg
+    |---- sdae_randomHashValue.jpg
+    |---- 酱闷肘子_randomHashValue.jpg
   
   ```
     
-    如下图所示
+    As shown below
 
     ![image](https://cdn.wenanzhe.com/img/mkGu_000001d00f140741741ed9916240d8d5.jpg)
 
-    那么图片命名可以是 
+    Then the picture naming can be
 
     `mkGu_000001d00f140741741ed9916240d8d5.jpg`
 
-    ### 为考虑各种情况，dddd_trainer不会自动去处理大小写问题，如果想训练大小写，则在样本标注时就需要自己标注好大小写，如上面例子
+    ### In order to consider various situations, dddd_trainer will not automatically handle the case problem. If you want to train the case, you need to mark the case yourself when labeling the sample, as in the above example
 
-    ### B、从文件中导入
+    ### B. Import from file
 
-    受限于可能样本组织形式或者特殊字符，本项目支持从txt文档中导入数据，数据集目录必须包含有`labels.txt`文件和`images`文件夹, 其中/root/images_set为图片所在目录，可以为任意目录地址
+    Limited by possible sample organization forms or special characters, this project supports importing data from txt documents. The data set directory must contain the `labels.txt` file and `images` folder, where /root/images_set is the directory where the images are located. Can be any directory address.
     
-    `labels.txt`文件中包含了所有在`/root/images_set/images`目录下基于`/root/images_set/images`的图片相对路径，`/root/images_set/images`下可以有目录。
+`labels.txt`The file contains the relative paths of all images `/root/images_set/images`under the directory , and there can be directories under it.`/root/images_set/images` `/root/images_set/images`
 
-    #### 当然，在这种模式下，图片的文件名随意，可以有具体label也可以没有，因为咱们不从这里获取图片的label
+#### Of course, in this mode, the file name of the image is arbitrary, and it may or may not have a specific label, because we do not get the label of the image from here.
 
-    如下所示
-- 
-   a.images下无目录的形式
+As follows
+
+- The form without directory under a.images
 
     ```
   /root/images_set/
     |---- labels.txt
     |---- images
-          |---- 随机hash值.jpg
-          |---- 随机hash值.jpg
-          |---- 酱闷肘子_随机hash值.jpg
+          |---- randomhashValue.jpg
+          |---- randomhashValue.jpg
+          |---- 酱闷肘子_randomhashValue.jpg
   
-  labels.txt文件内容为（其中\t制表符为每行文件名与label的分隔符）
-  随机hash值.jpg\tabcd
-  随机hash值.jpg\tsdae
-  酱闷肘子_随机hash值.jpg\t酱闷肘子
+  labels.txt The file content is（The \ttab character is the separator between the file name and label of each line.）
+  randomhashValue.jpg\tabcd
+  randomhashValue.jpg\tsdae
+  酱闷肘子_randomhashValue.jpg\t酱闷肘子
   ```
-  b.images下有目录的形式
+  b.In the form of a directory under images
     ```
   /root/images_set/
     |---- labels.txt
@@ -121,11 +125,11 @@ project_name 为项目名称，尽量不要以特殊符号命名
   
   ```
   
-  ### 为了新手更好的理解本部分的内容，本项目也提供了两套基础数据集提供测试
+  ### In order for novices to better understand the content of this part, this project also provides two sets of basic data sets for testing.
 
-    [数据集一](https://wwm.lanzoum.com/iUyYb0b5z3lg)
-    [数据集二](https://wwm.lanzoum.com/itczd0b5z3yj)
-- ### 5、修改配置文件
+    [Data set one](https://drive.google.com/file/d/1pWCQC3TV42zAfJc_338_G1Lt1Yyg7L0w/view?usp=sharing)
+    [Data set two ](https://drive.google.com/file/d/1TJdM1YaGzylSWuA2Nd4Txi6LrwuqVHdt/view?usp=sharing)
+- ### 5. Modify configuration file
 ```yaml
 Model:
     CharSet: []     # 字符集，不要动，会自动生成
@@ -153,20 +157,20 @@ Train:
 
 
 ```
-配置文件位于本项目根目录下`projects/{project_name}/config.yaml`
+The configuration file is located in the root directory of this project `projects/{project_name}/config.yaml`
 
-- ### 6、缓存数据
+- ### 6. Caching data
 
 `python app.py cache {project_name} /root/images_set/`
 
-如果是从labels.txt里面读取数据
+If you are reading data from labels.txt
 
 `python app.py cache {project_name} /root/images_set/ file`
 
-- ### 7、开始训练或恢复训练
+- ### 7. Start training or resume training
 
 `python app.py train {project_name}`
 
-- ### 8、部署
+- ### 8. Deployment
 
-`你们先训练着，我去适配ddddocr和ocr_api_server了，适配完我再继续更新文档`
+`You guys train first, I will adapt ddddocr and ocr_api_server. After the adaptation, I will continue to update the document`
