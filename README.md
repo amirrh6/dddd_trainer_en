@@ -1,4 +1,4 @@
-- [x] README.md is translated to English via Google Translate and it ain't smooth so any sort of help from Chinese speakers is apreciated.
+- [x] README.md is translated to English via [Google Translate](https://github-com.translate.goog/sml2h3/dddd_trainer?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en) and it ain't smooth so any sort of help from Chinese speakers is apreciated.
 - - [x] Removed `-i https://pypi.douban.com/simple` from `pip install -r requirements.txt` command. 
 - [x] 2 Test Datasets are uploaded to Google Drive instead of Lanzoum.
 - [x] Added `onnx` to requirements.txt file.
