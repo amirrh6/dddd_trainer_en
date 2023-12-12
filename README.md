@@ -134,28 +134,28 @@ As follows
 - ### 5. Modify configuration file
 ```yaml
 Model:
-    CharSet: []     # 字符集，不要动，会自动生成
-    ImageChannel: 1 # 图片通道数，如果你想以灰度图进行训练，则设置为1，彩图，则设置为3。如果设置为1，数据集是彩图，项目会在训练的过程中自动在内存中将读取到的彩图转为灰度图，并不需要提前自己修改并且该设置不会修改本地图片
-    ImageHeight: 64 # 图片自动缩放后的高度，单位为px,高度必须为16的倍数，会自动缩放图像
-    ImageWidth: -1  # 图片自动缩放后的宽度，单位为px，本项若设置为-1，将自动根据情况调整
-    Word: false     # 是否为CNN模型，这里在创建项目的时候通过参数控制，不要自己修改
+    CharSet: []     # Don’t touch the character set, it will be generated automatically.
+    ImageChannel: 1 # The number of image channels. If you want to train with grayscale images, set it to 1, and if you want to use color images for training, set it to 3. If set to 1, the data set is a color image, and the project will automatically convert the read color image into a grayscale image in the memory during the training process. There is no need to modify it in advance and this setting will not modify the local image.
+    ImageHeight: 64 # The height of the image after automatic scaling. The unit is px. The height must be a multiple of 16. The image will be automatically scaled.
+    ImageWidth: -1  # The width of the image after automatic scaling, in px. If this item is set to -1, it will be automatically adjusted according to the situation.
+    Word: false     # Whether it is a CNN model or not is controlled by parameters when creating the project. Do not modify it yourself.
 System:
-    Allow_Ext: [jpg, jpeg, png, bmp]  # 支持的图片后缀，不满足的图片将会被自动忽略
-    GPU: true                         # 是否启用GPU去训练，使用GPU训练需要参考步骤一安装好环境
-    GPU_ID: 0                         # GPU设备号，0为第一张显卡
-    Path: ''                          # 数据集根目录，在缓存图片步骤会自动生成，不需要自己改，除非数据集地址改了
-    Project: test                     # 项目名称 也就是{project_name}
-    Val: 0.03                         # 验证集的数据量比例，0.03就是3%，在缓存数据时，会自动选则3%的图片用作训练过程中的数据验证，修改本值之后需要重新缓存数据
+    Allow_Ext: [jpg, jpeg, png, bmp]  # Supported image suffixes, unsatisfied images will be automatically ignored
+    GPU: true                         # Whether to enable GPU for training. To use GPU training, you need to refer to step 1 to install the environment.
+    GPU_ID: 0                         # GPU device number, 0 is the first graphics card
+    Path: ''                          # The root directory of the data set will be automatically generated during the image caching step. You do not need to change it unless the data set address is changed.
+    Project: test                     # Project name is {project_name}
+    Val: 0.03                         # The data volume ratio of the verification set, 0.03 is 3%. When caching the data, 3% of the images will be automatically selected for data verification during the training process. After modifying this value, the data needs to be cached again.
 Train:
-    BATCH_SIZE: 32                                    # 训练时每一个batch_size的大小，主要取决于你的显存或内存大小，可以根据自己的情况，多测试，一般为16的倍数,如16，32，64，128
-    CNN: {NAME: ddddocr}                              # 特征提取的模型，目前支持的值为ddddocr,effnetv2_l,effnetv2_m,effnetv2_xl,effnetv2_s,mobilenetv2,mobilenetv3_s,mobilenetv3_l
-    DROPOUT: 0.3                                      # 非专业人员不要动
-    LR: 0.01                                          # 初始学习率
-    OPTIMIZER: SGD                                    # 优化器，不要动
-    SAVE_CHECKPOINTS_STEP: 2000                       # 每多少step保存一次模型
-    TARGET: {Accuracy: 0.97, Cost: 0.05, Epoch: 20}   # 训练结束的目标，同时满足时自动结束训练并保存onnx模型，Accuracy为需要满足的最小准确率，Cost为需要满足的最小损失，Epoch为需要满足的最小训练轮数
-    TEST_BATCH_SIZE: 32                               # 测试时每一个batch_size的大小，主要取决于你的显存或内存大小，可以根据自己的情况，多测试，一般为16的倍数,如16，32，64，128
-    TEST_STEP: 1000                                   # 每多少step进行一次测试
+    BATCH_SIZE: 32                                    # The size of each batch_size during training mainly depends on your video memory or memory size. You can test more according to your own situation, usually a multiple of 16, such as 16, 32, 64, 128
+    CNN: {NAME: ddddocr}                              # Feature extraction model, currently supported values ​​are ddddocr, effnetv2_l, effnetv2_m, effnetv2_xl, effnetv2_s, mobilenetv2, mobilenetv3_s, mobilenetv3_l
+    DROPOUT: 0.3                                      # Non-professionals should not move
+    LR: 0.01                                          # Initial learning rate
+    OPTIMIZER: SGD                                    # Optimizer, don't move
+    SAVE_CHECKPOINTS_STEP: 2000                       # Save the model every how many steps
+    TARGET: {Accuracy: 0.97, Cost: 0.05, Epoch: 20}   # The goal of the end of training, when both are met, the training will automatically end and the onnx model will be saved. Accuracy is the minimum accuracy that needs to be met, Cost is the minimum loss that needs to be met, and Epoch is the minimum number of training rounds that needs to be met.
+    TEST_BATCH_SIZE: 32                               # The size of each batch_size during testing mainly depends on your video memory or memory size. You can test more according to your own situation, usually a multiple of 16, such as 16, 32, 64, 128
+    TEST_STEP: 1000                                   # Test every few steps
 
 
 ```
