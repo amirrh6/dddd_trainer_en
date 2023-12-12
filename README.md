@@ -117,13 +117,13 @@ As follows
     |---- labels.txt
     |---- images
           |---- aaaa
-                |---- 随机hash值.jpg
-          |---- 酱闷肘子_随机hash值.jpg
+                |---- randomhashValue.jpg
+          |---- 酱闷肘子_randomhashValue.jpg
   
-  labels.txt文件内容为（其中\t制表符为每行文件名与label的分隔符）
-  aaaa/随机hash值.jpg\tabcd
-  aaaa/随机hash值.jpg\tsdae
-  酱闷肘子_随机hash值.jpg\t酱闷肘子
+  The content of the labels.txt file is（The \ttab character is the separator between the file name and label of each line）
+  aaaa/randomhashValue.jpg\tabcd
+  aaaa/randomhashValue.jpg\tsdae
+  酱闷肘子_randomhashValue.jpg\t酱闷肘子
   
   ```
   
