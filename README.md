@@ -20,7 +20,7 @@ Macos only supports CPU training
 
 ## 1. Necessary environment configuration for deep learning (not only required by this project, but required by all deep learning projects, except CPU training)
 
-### Before starting this tutorial, please go to the [pytorch](https://pytorch.org/get-started/locally/) official website to check the pytorch version supported by your system and hardware. Note that for N cards before the 30 series, such as 2080Ti, please choose the version below cuda11 (for example: CUDA 10.2). If it is a 30 series N card, Only CUDA 11 version is supported. Please select CUDA 11 or above version (for example: CUDA 11.3), and then complete the pytorch installation according to the pytorch installation command displayed according to the selected conditions. Due to the version update speed of pytorch, many pypi sources only cache the cpu version, CUDA The version needs to be installed on the official website.
+### Before starting this tutorial, please go to [the pytorch](https://pytorch.org/get-started/locally/) official website to check the pytorch version supported by your system and hardware. Note that for N cards before the 30 series, such as 2080Ti, please choose the version below cuda11 (for example: CUDA 10.2). If it is a 30 series N card, Only CUDA 11 version is supported. Please select CUDA 11 or above version (for example: CUDA 11.3), and then complete the pytorch installation according to the pytorch installation command displayed according to the selected conditions. Due to the version update speed of pytorch, many pypi sources only cache the cpu version, CUDA The version needs to be installed on the official website.
 
 ### Install CUDA and CUDNN
 
@@ -30,7 +30,7 @@ Choose according to your graphics card model and system
 
 [cudnn](https://developer.nvidia.com/zh-cn/cudnn)
 
-Note that the cuda version number supported by cudnn should correspond to the cuda version number you installed. Different versions of cuda support different graphics cards. <b> For the 20 series brainless version, choose version 10.2 cuda, and for the 30 series brainless version, choose version 11.3 cuda</b >, If there is any problem here, just Baidu. It is considered a basic question.
+Note that the cuda version number supported by cudnn should correspond to the cuda version number you installed. Different versions of cuda support different graphics cards. <b> For the 20 series brainless version, choose version 10.2 cuda, and for the 30 series brainless version, choose version 11.3 cuda</b > . If there is any problem here, please Baidu, it is a basic question.
 
 ## 2. Training part
 
@@ -40,7 +40,9 @@ Note that the cuda version number supported by cudnn should correspond to the cu
 
 - ### 1. Clone this project locally
 
-`git clone https://github.com/sml2h3/dddd_trainer.git`
+~~`git clone https://github.com/sml2h3/dddd_trainer.git`~~
+
+`git clone https://github.com/amirrh6/dddd_trainer_en.git`
 
 - ### 2. Enter the project directory and install the dependencies required for this project
 
@@ -56,7 +58,7 @@ If you want to create a CNN project, you can add the --single parameter. The CNN
 
 `python app.py create {project_name} --single`
 
-project_name is the project name, try not to name it with special symbols.
+project_name is the project name, try not to name it with special symbols
 
 - ### 4. Prepare data
 
@@ -86,9 +88,9 @@ project_name is the project name, try not to name it with special symbols.
 
     ### B. Import from file
 
-    Limited by possible sample organization forms or special characters, this project supports importing data from txt documents. The data set directory must contain the `labels.txt` file and `images` folder, where /root/images_set is the directory where the images are located. Can be any directory address.
+    Limited by possible sample organization forms or special characters, this project supports importing data from txt documents. The data set directory must contain `labels.txt` files and `images` folders, where /root/images_set is the directory where the images are located, and can be any directory address.
     
-`labels.txt`The file contains the relative paths of all images `/root/images_set/images`under the directory , and there can be directories under it.`/root/images_set/images` `/root/images_set/images`
+`labels.txt` The file contains the relative paths of all images `/root/images_set/images` under the directory , and there can be directories under it. `/root/images_set/images` `/root/images_set/images`
 
 #### Of course, in this mode, the file name of the image is arbitrary, and it may or may not have a specific label, because we do not get the label of the image from here.
 
